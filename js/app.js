@@ -358,3 +358,35 @@ function deletesCandy() {
 		}
 	})
 }
+//temporizador y boton reiniciar
+//cambia el aspecto de la página
+//final del juego
+function endGame() {
+	$('div.panel-tablero, div.time').effect('fold');
+	$('h1.main-titulo').addClass('title-over')
+		.text('Gracias por jugar!');
+	$('div.score, div.moves, div.panel-score').width('100%');
+
+}
+
+// inicia el juego
+function initGame() {
+
+	colorBlink('h1.main-titulo');
+
+	$('.btn-reinicio').click(function () {
+		if ($(this).text() === 'Reiniciar') {
+			location.reload(true);
+		}
+		checkBoard();
+		$(this).text('Reiniciar');
+		$('#timer').startTimer({
+			onComplete: endGame
+		})
+	});
+}
+
+// Prepara el juego
+$(function() {
+	initGame();
+});
